@@ -1,0 +1,8 @@
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.optim filter=lfs diff=lfs merge=lfs -text
+*.params filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.conll filter=lfs diff=lfs merge=lfs -text
+assignments/a2/student/data/en-cw.txt filter=lfs diff=lfs merge=lfs -text
+**/en-cw.txt filter=lfs diff=lfs merge=lfs -text

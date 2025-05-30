@@ -1,0 +1,7 @@
+jupyter
+matplotlib
+numpy
+ipykernel
+scikit-learn
+gensim
+datasets==2.18.0

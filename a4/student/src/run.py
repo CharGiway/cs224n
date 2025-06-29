@@ -61,12 +61,12 @@ mconf = models.GPTConfig(
 
 # define models.
 # note: models should moved to device defined on lines 30-34.
-
+import models
 model = None
 if args.variant == 'vanilla':
     # TODO: [part c] Make some model here
     ### YOUR CODE HERE ###
-    pass
+    model = models.GPT(mconf).to(device)
     ### END YOUR CODE ###
 elif args.variant == 'rope':
     # TODO: [part g] Make some other model here
@@ -141,7 +141,47 @@ elif args.function == 'finetune':
     #     number of epochs for each case.
 
     ### YOUR CODE HERE ###
-    pass
+    if args.reading_params_path is not None:
+        model.load_state_dict(torch.load(args.reading_params_path))
+        hyperparameters = {
+            "max_epochs": 10,
+            "batch_size": 256,
+            "learning_rate": 6e-4,
+            "lr_decay": True,
+            "warmup_tokens": 512*20,
+            "final_tokens": 200*len(pretrain_dataset)*block_size,
+            "num_workers": 4
+        }
+    else:
+        hyperparameters = {
+            "max_epochs": 75,
+            "batch_size": 256,
+            "learning_rate": 6e-4,
+            "lr_decay": True,
+            "warmup_tokens": 512*20,
+            "final_tokens": 200*len(pretrain_dataset)*block_size,
+            "num_workers": 4
+        }
+
+    # Initialize the name dataset from corpus for finetuning
+    finetune_corpus = open(args.finetune_corpus_path).read()
+    finetune_dataset = dataset.NameDataset(pretrain_dataset, finetune_corpus)
+
+    if args.eval_corpus_path is not None:
+        # Init the name dataset from corpus for evaluation
+        eval_corpus = open(args.eval_corpus_path).read()
+        eval_dataset = dataset.NameDataset(pretrain_dataset, eval_corpus)
+    else:
+        # If not provided
+        eval_dataset = None
+
+    # Initialize training configuration & run train
+    tconf = trainer.TrainerConfig(**hyperparameters)
+    trainer.Trainer(model, finetune_dataset, eval_dataset, tconf).train()
+
+    # Save the finetuned model parameters to specified path
+    torch.save(model.state_dict(), args.writing_params_path)
+    raise NotImplementedError
     ### END YOUR CODE ###
 elif args.function == 'evaluate':
     assert args.outputs_path is not None

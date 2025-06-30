@@ -12,7 +12,11 @@ def main():
 
     # Compute accuracy in the range [0.0, 100.0]
     ### YOUR CODE HERE ###
-    pass
+    eval_corpus_path = "birth_dev.tsv"
+    len_eval = len(open(eval_corpus_path, "r").readlines())
+    predictions = ["London"] * len_eval
+
+    total, correct = utils.evaluate_places(eval_corpus_path, predictions)
     ### END YOUR CODE ###
 
     return accuracy

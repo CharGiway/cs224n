@@ -17,6 +17,7 @@ def main():
     predictions = ["London"] * len_eval
 
     total, correct = utils.evaluate_places(eval_corpus_path, predictions)
+    accuracy = correct / total
     ### END YOUR CODE ###
 
     return accuracy

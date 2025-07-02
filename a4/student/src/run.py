@@ -103,7 +103,7 @@ if args.function == 'pretrain':
 
     ### YOUR CODE HERE ###
     hyperparameters = {
-        "max_epochs": 30,  # change to 650 if all runs well
+        "max_epochs": 650,  # change to 650 if all runs well
         "batch_size": 128,
         "learning_rate": 6e-3,
         "lr_decay": True,

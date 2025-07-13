@@ -1,4 +1,5 @@
 ##! /bin/bash
+set -e
 
 # Pretrain the model
 python src/run.py pretrain rope wiki.txt \

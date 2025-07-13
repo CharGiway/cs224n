@@ -79,6 +79,9 @@ def apply_rotary_emb(x, rope_cache):
     rope_cache = rope_cache[None, None, ...]
     rotated_x = torch.view_as_complex(rope_cache) * torch.view_as_complex(x)  # (b, h, l, d // 2)
     
+    # Recover the original dimension 
+    rotated_x = torch.view_as_real(rotated_x).reshape(b, h, l, d)
+    
     ### END YOUR CODE ###
     return rotated_x
 

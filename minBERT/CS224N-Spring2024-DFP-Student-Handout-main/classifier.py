@@ -65,6 +65,7 @@ class BertSentimentClassifier(torch.nn.Module):
         # Get output logits 
         x = self.dropout(x["pooler_output"])
         x = self.output(x)
+        return x
 
 
 

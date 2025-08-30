@@ -27,7 +27,7 @@ FULL_TOKENIZER_FILE = "tokenizer.json"
 VOCAB_FILES_NAMES = {"vocab_file": "vocab.txt"}
 PRETRAINED_VOCAB_FILES_MAP = {
     "vocab_file": {
-        "bert-base-uncased": "https://huggingface.co/bert-base-uncased/resolve/main/vocab.txt"
+        "bert-base-uncased": "https://hf-mirror.com/bert-base-uncased/resolve/main/vocab.txt"
     }
 }
 PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES = {
@@ -895,7 +895,7 @@ class PreTrainedTokenizerBase(SpecialTokensMixin):
     if all(full_file_name is None for full_file_name in resolved_vocab_files.values()):
       msg = (
         f"Can't load tokenizer for '{pretrained_model_name_or_path}'. Make sure that:\n\n"
-        f"- '{pretrained_model_name_or_path}' is a correct model identifier listed on 'https://huggingface.co/models'\n\n"
+        f"- '{pretrained_model_name_or_path}' is a correct model identifier listed on 'https://hf-mirror.com/models'\n\n"
         f"- or '{pretrained_model_name_or_path}' is the correct path to a directory containing relevant tokenizer files\n\n"
       )
       raise EnvironmentError(msg)

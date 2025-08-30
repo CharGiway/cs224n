@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+export HF_ENDPOINT="https://hf-mirror.com"
 
 python3 classifier.py --fine-tune-mode full-model --lr 1e-5
 

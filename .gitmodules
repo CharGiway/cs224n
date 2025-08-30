@@ -1,3 +1,0 @@
-[submodule "minBERT/CS224N-Spring2024-DFP-Student-Handout-main/bert-base-uncased"]
-	path = minBERT/CS224N-Spring2024-DFP-Student-Handout-main/bert-base-uncased
-	url = https://huggingface.co/bert-base-uncased

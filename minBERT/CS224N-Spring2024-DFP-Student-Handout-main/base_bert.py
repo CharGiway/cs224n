@@ -112,7 +112,8 @@ class BertPreTrainedModel(nn.Module):
 
     if state_dict is None:
       try:
-        state_dict = torch.load(resolved_archive_file, map_location="cpu")
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        state_dict = torch.load(resolved_archive_file, map_location=device)
       except Exception:
         raise OSError(
           f"Unable to load weights from pytorch checkpoint file for '{pretrained_model_name_or_path}' "

@@ -113,6 +113,7 @@ class BertPreTrainedModel(nn.Module):
     if state_dict is None:
       try:
         device = "cuda" if torch.cuda.is_available() else "cpu"
+        print("=================== device ===================",device)
         state_dict = torch.load(resolved_archive_file, map_location=device)
       except Exception:
         raise OSError(
